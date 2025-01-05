@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block typeform %}
+    <input type="hidden" name="type" value="whatsapp">
+    <div class="col-4">
+        <input autocomplete="off" autofocus class="form-control mx-auto custom-border" id="phone" name="phone" placeholder="Phone" type="text" required>
+    </div>
+    <div class="col-8">
+        <input autocomplete="off" autofocus class="form-control mx-auto custom-border" name="message" placeholder="Message" type="text" required>
+    </div>
+    <script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+    </script>
+{% endblock %}
+

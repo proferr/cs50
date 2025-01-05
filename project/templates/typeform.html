@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block typeform %}
+    {% if type == 'link' %}
+        <div class="col-12 text-start">
+            <input type="hidden" name="type" value="link">
+            <input autocomplete="off" autofocus class="form-control custom-border" name="link" placeholder="Link" type="text" required>
+            <p class="mt-2 blockquote-footer">Try something like https://example.com/</p>
+        </div>
+    {% elif type == 'email' %}
+        <div class="col">
+            <input type="hidden" name="type" value="email" required>
+        </div>
+    {% elif type == 'text' %}
+        <input type="hidden" name="type" value="text">
+        <div class="mb-3">
+            <textarea class="form-control custom-border" name="textarea" id="text" rows="3" placeholder="Type your text" required></textarea>
+        </div>
+    {% elif type == 'whatsapp' %}
+        <input type="hidden" name="type" value="whatsapp">
+        <div class="col-4">
+            <input autocomplete="off" autofocus class="form-control mx-auto custom-border" id="phone" name="phone" placeholder="Phone" type="text" required>
+        </div>
+        <div class="col-8">
+            <input autocomplete="off" autofocus class="form-control mx-auto custom-border" name="message" placeholder="Message" type="text" required>
+        </div>
+       <script>
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+    </script>
+    {% else %}
+        Nenhum
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    QR CODE GENERATOR
+{% endblock %}
+
+{% block main %}
+<script>
+
+</script>
+<div class="row g-0">
+    <h2 class="title p-4">Free QR Code generator</h2>
+    <p class="">This APP was built for the final project of Harvard Business School's CS50 course and is completely free and virus-free.
+    <br>You can generate as many QR Codes as you like!</p>
+    <div class="col-md-8 p-2">
+        <form action="/" method="post">
+            <div class="mb-3">
+                <div class="card custom-border mb-3" style="max-width: 950px;">
+                    <div class="card-header">Type of your QR Code</div>
+                    <div class="card-body">
+                        <a href="/?type=link" class="btn btn-primary"><i class="bi-link p-1"></i>Link</a>
+                        <a href="/?type=text" class="btn btn-primary"><i class="bi-body-text p-1"></i>Textarea</a>
+                        <a href="/?type=whatsapp" class="btn btn-primary"><i class="bi-whatsapp p-1"></i>Whatsapp</a>
+
+                    </div>
+                </div>
+                    <!-- QR Code Type Forms -->
+                     <div id="type" class="type">
+                        <div class="row">
+                            {% block typeform %}{% endblock %}
+                        </div>
+                    </div>
+            </div>
+            <button class="btn btn-custom btn-lg" type="submit">Generate QR Code</button>
+        </form>
+    </div>
+    <div class="col-md-4 p-2">
+        <div class="card custom-border mb-3 p-2">
+            {% if content %}
+                <img src="{{ qrcode(content, box_size=20, border=2)  }}" style="max-width:420px">
+                <div class="d-grid gap-2 mx-auto">
+                    <a class="btn btn-primary" type="button" href="{{ qrcode(content, box_size=20, border=2)  }}" download="qrcode">Download</a>
+                </div>
+            {% else %}
+                <img src="/static/qr-code-example.jpg" alt="QR CODE EXAMPLE" style="max-width:420px">
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

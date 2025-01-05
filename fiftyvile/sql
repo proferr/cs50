@@ -1,0 +1,127 @@
+CREATE TABLE crime_scene_reports (
+    id INTEGER,
+    year INTEGER,
+    month INTEGER,
+    day INTEGER,
+    street TEXT,
+    description TEXT,
+    PRIMARY KEY(id)
+);
+CREATE TABLE interviews (
+    id INTEGER,
+    name TEXT,
+    year INTEGER,
+    month INTEGER,
+    day INTEGER,
+    transcript TEXT,
+    PRIMARY KEY(id)
+);
+CREATE TABLE atm_transactions (
+    id INTEGER,
+    account_number INTEGER,
+    year INTEGER,
+    month INTEGER,
+    day INTEGER,
+    atm_location TEXT,
+    transaction_type TEXT,
+    amount INTEGER,
+    PRIMARY KEY(id)
+);
+CREATE TABLE bank_accounts (
+    account_number INTEGER,
+    person_id INTEGER,
+    creation_year INTEGER,
+    FOREIGN KEY(person_id) REFERENCES people(id)
+);
+CREATE TABLE airports (
+    id INTEGER,
+    abbreviation TEXT,
+    full_name TEXT,
+    city TEXT,
+    PRIMARY KEY(id)
+);
+CREATE TABLE flights (
+    id INTEGER,
+    origin_airport_id INTEGER,
+    destination_airport_id INTEGER,
+    year INTEGER,
+    month INTEGER,
+    day INTEGER,
+    hour INTEGER,
+    minute INTEGER,
+    PRIMARY KEY(id),
+    FOREIGN KEY(origin_airport_id) REFERENCES airports(id),
+    FOREIGN KEY(destination_airport_id) REFERENCES airports(id)
+);
+CREATE TABLE passengers (
+    flight_id INTEGER,
+    passport_number INTEGER,
+    seat TEXT,
+    FOREIGN KEY(flight_id) REFERENCES flights(id)
+);
+CREATE TABLE phone_calls (
+    id INTEGER,
+    caller TEXT,
+    receiver TEXT,
+    year INTEGER,
+    month INTEGER,
+    day INTEGER,
+    duration INTEGER,
+    PRIMARY KEY(id)
+);
+CREATE TABLE people (
+    id INTEGER,
+    name TEXT,
+    phone_number TEXT,
+    passport_number INTEGER,
+    license_plate TEXT,
+    PRIMARY KEY(id)
+);
+CREATE TABLE bakery_security_logs (
+    id INTEGER,
+    year INTEGER,
+    month INTEGER,
+    day INTEGER,
+    hour INTEGER,
+    minute INTEGER,
+    activity TEXT,
+    license_plate TEXT,
+    PRIMARY KEY(id)
+);
+
+Saques antes do roubo
++---------+----------------+-----------------+---------------+
+|  name   |  phone_number  | passport_number | license_plate |
++---------+----------------+-----------------+---------------+
+| #Benista | (338) 555-6650 | 9586786673      | 8X428L0       |
+| #Brooke  | (122) 555-4581 | 4408372428      | QX4YZN3       |
+| +Bruce   | (367) 555-5533 | 5773159633      | 94KL13X       |
+| +Diana   | (770) 555-1861 | 3592750733      | 322W7JE       |
+| +Iman    | (829) 555-5269 | 7049073643      | L93JTIZ       |
+| #Kenny   | (826) 555-1652 | 9878712108      | 30G67EN       |
+| +Luca    | (389) 555-5198 | 8496433585      | 4328GD8       |
+| #Taylor  | (286) 555-6063 | 1988161715      | 1106N58       |
++---------+----------------+-----------------+---------------+
+
+Placas dos carros
++---------+----------------+-----------------+---------------+
+|  name   |  phone_number  | passport_number | license_plate |
++---------+----------------+-----------------+---------------+
+| Barry   | (301) 555-4174 | 7526138472      | 6P58WS2       |
+| Bruce   | (367) 555-5533 | 5773159633      | 94KL13X       |
+| Diana   | (770) 555-1861 | 3592750733      | 322W7JE       |
+| Iman    | (829) 555-5269 | 7049073643      | L93JTIZ       |
+| Kelsey  | (499) 555-9472 | 8294398571      | 0NTHK55       |
+| Luca    | (389) 555-5198 | 8496433585      | 4328GD8       |
+| Sofia   | (130) 555-0289 | 1695452385      | G412CB7       |
+| Vanessa | (725) 555-4692 | 2963008352      | 5P2BI95       |
++---------+----------------+-----------------+---------------+
+
+Suspeita ladrão (ligação)
++-------+----------------+----------+----------------+-----------------+
+| name  |  phone_number  | duration |    receiver    | passport_number |
++-------+----------------+----------+----------------+-----------------+
+| Bruce | (367) 555-5533 | 45       | (375) 555-8161 | 5773159633      |
+| Diana | (770) 555-1861 | 49       | (725) 555-3243 | 3592750733      |
++-------+----------------+----------+----------------+-----------------+
+

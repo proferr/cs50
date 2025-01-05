@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block typeform %}
+    <div class="col-12 text-start">
+        <input type="hidden" name="type" value="link">
+        <input autocomplete="off" autofocus class="form-control custom-border" name="link" placeholder="Link" type="text" required>
+        <p class="mt-2 blockquote-footer">Try something like https://example.com/</p>
+    </div>
+
+{% endblock %}
+

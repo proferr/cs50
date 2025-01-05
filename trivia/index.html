@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                let correct = document.querySelector('.correct');
+                let incorret = document.querySelector('.incorrect');
+                let answers = document.querySelectorAll('.answer');
+
+                // feedback
+                function feedback(e, response) {
+                    e.parentElement.querySelector('.feedback').innerHTML = response;
+                }
+
+                // alternatives
+                for (let i = 0; i < answers.length; i++){
+
+                    answers[i].addEventListener('click', function() {
+
+                        if (answers[i].classList.contains('correct')) {
+
+                            answers[i].style.backgroundColor = 'Green';
+                            feedback(answers[i], 'Correct Answer');
+
+                        }
+                        else if (answers[i].classList.contains('incorrect')) {
+
+                            answers[i].style.backgroundColor = 'Red';
+                            feedback(answers[i], 'Incorrect Answer');
+
+                        }
+
+                    });
+
+                }
+
+                // free response
+                let check = document.querySelector('#check');
+                check.addEventListener('click', function() {
+                    let input = document.querySelector('input');
+                    if (input.value === 'India') {
+                        input.style.backgroundColor = 'Green';
+                        feedback(input, 'Correct Answer');
+                    }
+                    else {
+                        input.style.backgroundColor = 'Red';
+                        feedback(input, 'Incorrect Answer');
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Which is the richest country in the world in 2024?</h3>
+                <button type="button" class="answer incorrect">United State</button>
+                <button type="button" class="answer correct">Luxembourg</button>
+                <button type="button" class="answer incorrect">Switzerland</button>
+                <button type="button" class="answer incorrect">China</button>
+                <p class="feedback"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Which country has the largest population in the world?</h3>
+                <input type="text"></input>
+                <button id="check">Check Answer</button>
+                <p class="feedback"></p>
+            </div>
+        </div>
+    </body>
+</html>

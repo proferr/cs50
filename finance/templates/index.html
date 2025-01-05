@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">TOTAL</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Fast Sell</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                {% for row in rows %}
+                <tr>
+                    <td class="text-start">{{ row['symbol'] }}</td>
+                    <td class="text-end">{{ row['price'] | usd }}</td>
+                    <td class="text-end">{{ row['total_price'] | usd }}</td>
+                    <form action="/sell" method="post">
+                        <input name="symbol" type="hidden" value="{{ row['symbol'] }}">
+                        <td class="text-end"><input autocomplete="off" class="form-control float-end w-auto" min="0" max="{{ row['shares'] }}" name="shares" placeholder="Shares" type="number" value="{{ row['shares'] }}"></td>
+                        <td class="text-end"><button class="btn btn-primary" type="submit">Sell</button></td>
+                    </form>
+                </tr>
+
+                {% endfor %}
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">Cash</td>
+                <td class="border-0 text-end">{{ cash | usd }}</td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">TOTAL</td>
+                <td class="border-0 w-bold text-end">{{ (total + cash) | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

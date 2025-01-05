@@ -1,0 +1,22 @@
+HTML TAGs
+
+main
+nav
+div
+h3
+button
+a
+img
+script
+
+CSS PROPERTIES
+.menu
+.btn-harvard
+.btn-harvard:hover
+.banner-header
+ul
+
+Bootstrap: I use entire bootstrap framework applying native css classes like a navbar to make navigation bar,
+and more important element: grid system with row and col.
+
+Javascript: I use javascript only for change banner image of each week.
